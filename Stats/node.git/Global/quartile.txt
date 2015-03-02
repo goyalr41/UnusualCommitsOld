@@ -1,0 +1,18 @@
+Total LOC Quartile
+[REAL* (0.0, 6.0, 23.0, 83.0, 308.5, 1061.5, 16576.0, 458612.0)]
+
+LOC added Quartile
+[REAL* (0.0, 3.0, 14.0, 56.0, 196.0, 624.5, 9160.25, 458598.0)]
+
+LOC removed Quartile
+[REAL* (0.0, 1.0, 4.0, 19.0, 98.0, 334.0, 4625.0, 129974.0)]
+
+Nos. of files Quartile
+[REAL* (0.0, 1.0, 1.0, 3.0, 6.0, 17.0, 142.0, 1422.0)]
+
+Nos. of files Added Quartile
+[REAL* (0.0, 0.0, 0.0, 0.0, 1.0, 2.0, 16.25, 1577.0)]
+
+Nos. of files removed Quartile
+[REAL* (0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 7.0, 190.0)]
+

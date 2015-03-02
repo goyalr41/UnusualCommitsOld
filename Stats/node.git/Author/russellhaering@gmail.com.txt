@@ -1,0 +1,21 @@
+Author Time Graph
+[REAL* (0.0, 1.5, 6.0, 16.5, 20.0, 20.0, 20.0, 20.0)]
+
+Author LOC Changed
+[REAL* (7.0, 18.75, 58.0, 62.0, 68.5, 71.75, 74.35000000000001, 75.0)]
+
+Author LOC Added
+[REAL* (5.0, 17.0, 56.5, 60.0, 67.5, 71.25, 74.25, 75.0)]
+
+Author LOC Removed
+[REAL* (0.0, 1.25, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0)]
+
+Author Files Changed
+[REAL* (1.0, 1.25, 2.0, 2.75, 3.0, 3.0, 3.0, 3.0)]
+
+Author Files Added
+[REAL* (0.0, 0.25, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0)]
+
+Author Files Removed
+[REAL* (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)]
+

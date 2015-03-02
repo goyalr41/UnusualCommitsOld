@@ -1,0 +1,25 @@
+  <tr>
+      <td><a target="_blank"  href="https://github.com/$author/$repository/commit/$id">$id</a></td>
+	  <td>$email</td>
+	  <td>$locvalue</td>
+	  <td class = "valglb">$locglb</td>
+	  <td class = "valauth">$locauth</td>
+	  <td>$locaddvalue</td>
+	  <td class = "valglb">$locaddglb</td>
+	  <td class = "valauth">$locaddauth</td>
+	  <td>$locremvalue</td>
+	  <td class = "valglb">$locremglb</td>
+	  <td class = "valauth">$locremauth</td>
+	  <td>$nofvalue</td>
+	  <td class = "valglb">$nofglb</td>
+	  <td class = "valauth">$nofauth</td>
+	  <td>$nofaddvalue</td>
+	  <td class = "valauth">$nofaddauth</td>
+	  <td>$nofremvalue</td>
+	  <td class = "valauth">$nofremauth</td>
+	  <td>$tocvalue</td>
+	  <td class = "valglb">$tocauth</td>
+	  <td class = "result">$decision</td>
+	  <td class = "valres">$decvalue</td>
+	  <td>$comment</td>
+ </tr>
