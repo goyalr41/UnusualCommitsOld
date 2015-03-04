@@ -6,8 +6,8 @@ public class Settings {
 	public static String Resultpath = "";
 	public static String Statspath = "";
 	public static String workingDir = "";
-	public static String Repositorypath = "C://Users//Raman Workstation//Documents//GitHub//TypeChef//.git";
-	public static String Repositoryname = "TypeChef";
+	public static String Repositorypath = "C://Users//Raman Workstation//Documents//GitHub//node.git";
+	public static String Repositoryname = "node.git";
 	public static String owner = "joyent";
 	public static String repo = "node";
 	public static String Htmlpath = "";
