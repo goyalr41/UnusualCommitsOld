@@ -10,6 +10,8 @@ import java.util.TreeMap;
 
 import org.apache.commons.io.FileUtils;
 
+import settings.Settings;
+
 public class naivemethod {
 	
 	public static SortedMap<Double,Double> totallocmap = new TreeMap<>();
@@ -96,8 +98,9 @@ public class naivemethod {
 	
 	public void buildglobal() throws IOException {
 		
-		String Repository = Variablescall.Repository;
-		File dat = new File("C:\\Users\\Raman Workstation\\workspace\\UnusualCommits\\DataFull\\"+Repository+"\\Global\\Training_data.tsv");
+		String Repositoryname = Settings.Repositoryname;
+		String Datapath = Settings.Datapath;
+		File dat = new File(Datapath + Repositoryname + "//Global//Training_data.tsv");
 		
 		List<String> h = FileUtils.readLines(dat);
 		h.remove(0);
@@ -137,8 +140,9 @@ public class naivemethod {
 		  authfileaddmap.clear();
 		  authfileremmap.clear();
 		  
-		  String Repository = Variablescall.Repository; 
-		  File dat = new File("C:\\Users\\Raman Workstation\\workspace\\UnusualCommits\\Datafull\\"+Repository+"\\Author\\TimeFiles\\"+email+".tsv");
+		  String Repository = Settings.Repositoryname; 
+		  String Datapath = Settings.Datapath; 
+		  File dat = new File(Datapath + Repository+"//Author//TimeFiles//"+email+".tsv");
 		 // dat.getParentFile().mkdirs();
 		  //boolean fileexist = true;	
 			//System.out.println(email);
@@ -194,7 +198,7 @@ public class naivemethod {
 				writer.append(filesrem + "\n");
 				writer.flush();
 				writer.close();
-		        System.out.println("Tada1");
+		        //System.out.println("Tada1");
 
 			  return false;
 		  }

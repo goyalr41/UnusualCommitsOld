@@ -26,15 +26,20 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 
-import detection.Variablescall;
+import settings.Settings;
 
 public class extractcommits {
 	public static void main(String[] args) throws NoHeadException, GitAPIException {
 		
 		try {
-	        String Repository = Variablescall.Repository;
 			
-	        File gitDir = new File("C://Users//Raman Workstation//Documents//GitHub//"+ Repository);
+			Settings s = new Settings();
+			s.initiate();
+			
+	        String Repositoryname = Settings.Repositoryname;
+	        String Repositorypath = Settings.Repositorypath;
+			
+	        File gitDir = new File(Repositorypath);
 	        Repository repository = new FileRepository(gitDir);
 	        Git git = new Git(repository);
 	        
@@ -52,16 +57,20 @@ public class extractcommits {
 	        List<DiffEntry> diffs = null;
 	    
 	        //TSV File which will be containing extracted data
-	        File repo_global = new File("C://Users//Raman Workstation//workspace//UnusualCommits//DataFull//"+Repository+"//Global//Training_data.tsv");
+	        File repo_global = new File(Settings.Datapath + Repositoryname + "//Global//Training_data.tsv");
 	        repo_global.getParentFile().mkdirs();
 	        repo_global.createNewFile();
+	        
 	        FileWriter writer = new FileWriter(repo_global); 
+	        
+
 	        
 	        /*File repo_local = new File("C://Users//Raman Workstation//workspace//UnusualCommits/Data//"+Repository+"//Author//Training_data.tsv");
 	        repo_global.getParentFile().mkdirs();
 	        FileWriter writer = new FileWriter(repo_global); */
-	        FileWriter writer1 = new FileWriter("C://Users//Raman Workstation//workspace//UnusualCommits//DataFull//"+Repository+"//Global//Training_filescount.tsv"); 
+	        FileWriter writer1 = new FileWriter(Settings.Datapath + Repositoryname +"//Global//Training_filescount.tsv"); 
 	       
+	        
 	        writer.append("Commit Id\t");
 	        writer.append("Author E-Mail\t");
 	        writer.append("Total LOC affected\t");
@@ -81,7 +90,7 @@ public class extractcommits {
 	        
 	        int total = 0; 
 	        
-	        for (RevCommit rev : logs) {
+	        for (@SuppressWarnings("unused") RevCommit rev : logs) {
 	        	total++;
 	        }
 	       
@@ -243,7 +252,13 @@ public class extractcommits {
 	        		//System.out.println(formatter.format(p.getWhen()) + " " + p.getWhen());
 	        		writer.append(rev.getName().substring(0,11)+"\t");
 	        		//writer.append(p.getName()+"\t");
-	        		writer.append(p.getEmailAddress()+"\t");
+	        		 String email = p.getEmailAddress();
+		    	     if(email.contains("://") || email.contains("//")) {
+		    	        	email = email.replace(":", "");
+		    	        	email = email.replace("//", "");
+		    	     }
+		    	        
+	        		writer.append(email+"\t");
 	        		
 	        		//writer.append(formatter.format(p.getWhen())+"\t");
 	        		writer.append( totallinechanged + "\t" );
@@ -251,19 +266,19 @@ public class extractcommits {
 	        		writer.append( ovllinerem + "\t" );
 	        		writer.append( filetypes.size() + "\t" );
 	        		writer.append( totalfiladd +"\t" );
-	        		writer.append( totalfilrem + "\t" );
+	        		writer.append( totalfilrem + "\n");
 	        		//writer.append( filetypes + "\n" );
-	        		writer.append("\n");
+	        		//writer.append("\n");
 	        		//System.out.println("LOC added = " + ovllineadd + "   LOC removed = " +ovllinerem + "   Total LOC = " + totallinechanged + " Filetypes = " + filetypes + " " +  totalfilrem + " " + totalfiladd);
 	        		
-	        		if(author_time.containsKey(p.getEmailAddress())){
-            			List<String> value = author_time.get(p.getEmailAddress());
+	        		if(author_time.containsKey(email)){
+            			List<String> value = author_time.get(email);
             			value.add(rev.getName().substring(0,11)+"\t" + formatter.format(p.getWhen()) + "\t"  + totallinechanged + "\t"  + ovllineadd + "\t" + ovllinerem + "\t"  + filetypes.size() + "\t" + totalfiladd + "\t" + totalfilrem );
-            			author_time.put(p.getEmailAddress(), value);
+            			author_time.put(email, value);
             		}else {
             			List<String> value = new ArrayList<>();
             			value.add(rev.getName().substring(0,11)+"\t" + formatter.format(p.getWhen()) +  "\t" + totallinechanged + "\t"  + ovllineadd + "\t"  + ovllinerem + "\t"  + filetypes.size() + "\t" + totalfiladd + "\t" + totalfilrem );
-            			author_time.put(p.getEmailAddress(), value);
+            			author_time.put(email, value);
             		}
 	        		
 	        		/*if(author_time.containsKey(p.getEmailAddress())){
@@ -286,8 +301,8 @@ public class extractcommits {
 	        	
 	        		
 	
-	        		if(author_files.containsKey(p.getEmailAddress())){
-	            		Map<String,Long> value = author_files.get(p.getEmailAddress());
+	        		if(author_files.containsKey(email)){
+	            		Map<String,Long> value = author_files.get(email);
 	            			for(String filtyp: filetypes) {
 	            				if(value.containsKey(filtyp)) {
 	            					long value1 = value.get(filtyp)+1;
@@ -296,7 +311,7 @@ public class extractcommits {
 	            					value.put(filtyp, (long)1);
 	            				}
 	            			}
-	            			author_files.put(p.getEmailAddress(), value);	
+	            			author_files.put(email, value);	
 	            	} else {
 	            		Map<String,Long> value = new HashMap<>();
             			for(String filtyp: filetypes) {
@@ -307,7 +322,7 @@ public class extractcommits {
             					value.put(filtyp, (long)1);
             				}
             			}
-            			author_files.put(p.getEmailAddress(), value);	
+            			author_files.put(email, value);	
 	            	}
 	        	} 
 	        	
@@ -322,7 +337,7 @@ public class extractcommits {
 		    writer1.close();
 		    for (String author_name: author_time.keySet()) {
 		    	List<String> value = author_time.get(author_name);
-		    	File authtime = new File("C://Users//Raman Workstation//workspace//UnusualCommits//DataFull//"+Repository+"//Author//TimeFiles//"+author_name+".tsv"); 
+		    	File authtime = new File(Settings.Datapath + Repositoryname +"//Author//TimeFiles//"+ author_name+".tsv"); 
 		    	authtime.getParentFile().mkdirs();
 		    	FileWriter writer_authtime = new FileWriter(authtime);
 		    
@@ -335,7 +350,7 @@ public class extractcommits {
 		    }
 		    
 		    for (String author_name: author_files.keySet()) {
-		    	File authfiles = new File("C://Users//Raman Workstation//workspace//UnusualCommits//DataFull//"+Repository+"//Author//FilesChanged//"+author_name+".tsv"); 
+		    	File authfiles = new File(Settings.Datapath + Repositoryname +"//Author//FilesChanged//" + author_name +".tsv"); 
 		    	authfiles.getParentFile().mkdirs();
 		    	FileWriter writer_authfiles = new FileWriter(authfiles); 
 		    	Map<String,Long> value = author_files.get(author_name);

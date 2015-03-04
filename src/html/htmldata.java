@@ -6,30 +6,32 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
+import settings.Settings;
+
 public class htmldata {
 	public static void addheader(StringBuilder sb) throws IOException {
-		File header = new File("C:\\Users\\Raman Workstation\\workspace\\UnusualCommits\\src\\html\\header.txt");
+		File header = new File(Settings.Htmlpath + "header.txt");
 		String heade = FileUtils.readFileToString(header);
 		sb.append(heade); 
 	}
 	
 	public static void addfooter(StringBuilder sb) throws IOException {
-		File header = new File("C:\\Users\\Raman Workstation\\workspace\\UnusualCommits\\src\\html\\footer.txt");
+		File header = new File(Settings.Htmlpath + "footer.txt");
 		String heade = FileUtils.readFileToString(header);
 		sb.append(heade); 
 	}
 	
 	public static void addend(StringBuilder sb) throws IOException {
-		File header = new File("C:\\Users\\Raman Workstation\\workspace\\UnusualCommits\\src\\html\\end.txt");
+		File header = new File(Settings.Htmlpath + "end.txt");
 		String heade = FileUtils.readFileToString(header);
 		sb.append(heade); 
 	}
 	
 	public static void addtag(StringBuilder sb, String[] fil) throws IOException {
-		File header = new File("C:\\Users\\Raman Workstation\\workspace\\UnusualCommits\\src\\html\\data.txt");
+		File header = new File(Settings.Htmlpath + "data.txt");
 		String heade = FileUtils.readFileToString(header);
-		heade = heade.replace("$author", "joyent");
-		heade = heade.replace("$repository", "node");
+		heade = heade.replace("$author", Settings.owner);
+		heade = heade.replace("$repository", Settings.repo);
 		int i = 0;
 		heade = heade.replace("$id", fil[i++]);
 		heade = heade.replace("$email",fil[i++]);
@@ -76,12 +78,15 @@ public class htmldata {
 		}
 		addfooter(sb);
 		addend(sb);
-		File HtmlFile = new File("C:\\Users\\Raman Workstation\\workspace\\UnusualCommits\\src\\html\\htmlfile.html");
+		File HtmlFile = new File(Settings.Resultpath + Settings.Repositoryname + "//result.html");
 		FileUtils.writeStringToFile(HtmlFile, sb.toString());
 	}
 	
 	public static void main(String[] args) throws IOException {
-		File res = new File("C:\\Users\\Raman Workstation\\workspace\\UnusualCommits\\Results\\node.git\\result.tsv");
+		Settings s = new Settings();
+		s.initiate();
+		
+		File res = new File(Settings.Resultpath + Settings.Repositoryname +   "//result.tsv");
 		call(res);
 		/*StringBuilder sb = new StringBuilder();
 		addheader(sb);

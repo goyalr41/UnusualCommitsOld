@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.SortedMap;
 import java.util.TimeZone;
 
@@ -29,7 +28,8 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 
-import comment.extractcomment;
+import settings.Settings;
+//import comment.extractcomment;
 
 public class naivemethodtest {
 	
@@ -79,12 +79,17 @@ public class naivemethodtest {
 	
 	public static void main(String[] args) throws NoHeadException, GitAPIException {
 		
-		Map<String,Double> mn = new HashMap<String,Double>();
-		Map<String,Double> mn1 = new HashMap<String,Double>();
+		//Map<String,Double> mn = new HashMap<String,Double>();
+		//Map<String,Double> mn1 = new HashMap<String,Double>();
+		
+		Settings s = new Settings();
+		s.initiate();
 		
 		try {
-	        String Repository = Variablescall.Repository;
-			File gitDir = new File("C://Users//Raman Workstation//Documents//GitHub//"+ Repository);
+	        String Repositoryname = Settings.Repositoryname;
+	        String Repositorypath = Settings.Repositorypath;
+	        
+			File gitDir = new File(Repositorypath);
 	        Repository repository = new FileRepository(gitDir);
 	        Git git = new Git(repository);
 	        
@@ -101,7 +106,9 @@ public class naivemethodtest {
 	        
 	        List<DiffEntry> diffs = null;
 	        
-	        File dir = new File("C://Users//Raman Workstation//workspace//UnusualCommits//Results//"+Repository);
+	        String Resultpath = Settings.Resultpath;
+	        
+	        File dir = new File(Resultpath + Repositoryname);
 	        dir.mkdirs();
 	        FileWriter writer = new FileWriter(dir+"//result.tsv");
 	        int normal = 0, anamoly = 0;
@@ -132,30 +139,32 @@ public class naivemethodtest {
 	        writer.append("Decision\t");
 	        writer.append("Value\t");
 	        writer.append("Comment\n");
-	        
-	        
+	        	        
 	        naivemethod nm = new naivemethod();
 	        nm.buildglobal();
 	        
 	        //To count total number of Commits.
 	        int count = 0; 
 	        
-	        filecount fc = new filecount();
-	        mn = fc.filecount();
+	        //filecount fc = new filecount();
+	        //mn = fc.glbfilecount();
+	       
 	       
 	        int total = 0; 
-	        for (RevCommit rev : logs) {
+	        for (@SuppressWarnings("unused") RevCommit rev : logs) {
 	        	total++;
 	        }
 	        total = total/2;
-	       
+	        
+
+	        
 	        Iterable<RevCommit> logs1 = new Git(repository).log().all().call();
 	        for (RevCommit rev : logs1) {
 	    		count++;
-	        	if(count == 186) {
+	        	/*if(count != 186) {
 	        		//System.out.println(count);
 	        		continue;
-	        	}
+	        	}*/
 	        	
 	        	if(count > total) {
 	        		break;
@@ -196,7 +205,7 @@ public class naivemethodtest {
 	                int totallinechanged = 0;
 	                int totalfilrem = 0; 
 	                int totalfiladd = 0;
-	                int cnt = 0;
+	    
 	    	        Map<String, Long> filecount = new HashMap<>();
 
 	    	        for(DiffEntry diff : diffs) {
@@ -311,11 +320,17 @@ public class naivemethodtest {
 	    	        String tiofcommit = formatter.format(p.getWhen());
 	    	        
 	    	        writer.append(rev.getName().substring(0,11)+"\t");
-	    	        writer.append(p.getEmailAddress()+"\t");
+	    	        
+	    	        String email = p.getEmailAddress();
+	    	        if(email.contains("://") || email.contains("//")) {
+	    	        	email = email.replace(":", "");
+	    	        	email = email.replace("//", "");
+	    	        }
+	    	        writer.append(email+"\t");
 
 	    	        //System.out.println("Tada");
-
-	        		boolean exists = nm.buildupdateauthor(p.getEmailAddress(), rev.getName().substring(0,11), tiofcommit, totallinechanged, ovllineadd, ovllinerem, filetypes.size(), totalfiladd, totalfilrem);
+	    	        
+	        		boolean exists = nm.buildupdateauthor(email, rev.getName().substring(0,11), tiofcommit, totallinechanged, ovllineadd, ovllinerem, filetypes.size(), totalfiladd, totalfilrem);
 	        		    
 	    	        List<Double> val = new ArrayList<Double>();
 	    	        

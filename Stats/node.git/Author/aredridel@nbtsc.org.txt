@@ -1,21 +1,21 @@
 Author Time Graph
-[REAL* (5.0, 5.5, 12.5, 20.25, 21.0, 21.0, 21.0, 21.0)]
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
 
 Author LOC Changed
-[REAL* (4.0, 6.0, 9.0, 12.0, 17.5, 20.25, 22.450000000000003, 23.0)]
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
 
 Author LOC Added
-[REAL* (3.0, 3.25, 5.0, 6.0, 11.5, 14.25, 16.450000000000003, 17.0)]
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
 
 Author LOC Removed
-[REAL* (0.0, 3.0, 4.5, 6.0, 6.0, 6.0, 6.0, 6.0)]
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
 
 Author Files Changed
-[REAL* (0.0, 0.25, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0)]
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
 
 Author Files Added
-[REAL* (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)]
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
 
 Author Files Removed
-[REAL* (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)]
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
 

@@ -3,10 +3,13 @@ package comment;
 import java.io.IOException;
 
 
+
 import org.eclipse.egit.github.core.*;
 import org.eclipse.egit.github.core.service.CommitService;
 import org.eclipse.egit.github.core.service.RepositoryService;
 //import org.eclipse.egit.github.core.service.UserService;
+
+import settings.Settings;
 
 public class extractcomment {
 
@@ -14,8 +17,7 @@ public class extractcomment {
 		// TODO Auto-generated method stub
 		RepositoryService g = new RepositoryService();
 		//UserService uc = new UserService();
-		System.out.println("wah");
-		Repository t = g.getRepository("joyent", "node");
+		Repository t = g.getRepository(Settings.owner, Settings.repo);
 		System.out.println(t.getGitUrl());
 		CommitService cs = new CommitService();
 		RepositoryCommit rc = cs.getCommit(t, commit);

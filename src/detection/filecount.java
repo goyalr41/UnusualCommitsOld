@@ -9,7 +9,7 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;;
 
 public class filecount {
-	public  Map<String, Double> filecount() throws IOException{
+	public  Map<String, Double> glbfilecount() throws IOException{
 		File ficount = new File("C:\\Users\\Raman Workstation\\workspace\\UnusualCommits\\Data\\node.git\\Global\\Training_filescount.tsv");
 		List<String> lis = FileUtils.readLines(ficount);
 		Map<String,Integer> mn = new HashMap<String,Integer>();
