@@ -84,6 +84,10 @@ public class htmldata {
 	
 	public static void main(String[] args) throws IOException {
 		Settings s = new Settings();
+		Settings.Repositorypath = "C://Users//Raman Workstation//Documents//GitHub//node.git";
+		Settings.Repositoryname = "Node";
+		Settings.owner = "joyent";
+		Settings.repo = "node";
 		s.initiate();
 		
 		File res = new File(Settings.Resultpath + Settings.Repositoryname +   "//result.tsv");

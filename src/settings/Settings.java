@@ -6,10 +6,10 @@ public class Settings {
 	public static String Resultpath = "";
 	public static String Statspath = "";
 	public static String workingDir = "";
-	public static String Repositorypath = "C://Users//Raman Workstation//Documents//GitHub//node.git";
-	public static String Repositoryname = "node.git";
-	public static String owner = "joyent";
-	public static String repo = "node";
+	public static String Repositorypath = "";
+	public static String Repositoryname = "";
+	public static String owner = "";
+	public static String repo = "";
 	public static String Htmlpath = "";
 	
 	
