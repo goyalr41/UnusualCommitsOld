@@ -17,9 +17,23 @@
 	  <td class = "valauth">$nofaddauth</td>
 	  <td>$nofremvalue</td>
 	  <td class = "valauth">$nofremauth</td>
+	  <td>$commsgvalue</td>
+	  <td class = "valglb">$commmsgglb</td>
+	  <td class = "valauth">$commmsgauth</td>
 	  <td>$tocvalue</td>
-	  <td class = "valglb">$tocauth</td>
+	  <td class = "valauth">$tocauth</td>
+	  <td>$filepervalue</td>
+	  <td class = "valglb">$fileperglb</td>
+	  <td>$filecommitvalue</td>
+	  <td class = "valglb">$filecommitglb</td>
+	  <td>$filecombivalue</td>
+	  <td class = "valglb">$filecombiglb</td>
+	  <td>$authfpervalue</td>
+	  <td class = "valauth">$fileperauth</td>
+	  <td>$authfcommitvalue</td>
+	  <td class = "valauth">$filecommitauth</td>
+	  <td>$authfcombivalue</td>
+	  <td class = "valauth">$filecombiauth</td>
 	  <td class = "result">$decision</td>
 	  <td class = "valres">$decvalue</td>
-	  <td>$comment</td>
  </tr>

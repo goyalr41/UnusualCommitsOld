@@ -54,11 +54,26 @@ public class htmldata {
 		//heade = heade.replace("$tofvalue",fil[i++]);
 		//heade = heade.replace("$tofglb",fil[i++]);
 		//heade = heade.replace("$tofauth",fil[i++]);
+		heade = heade.replace("$commsgvalue", fil[i++]);
+		heade = heade.replace("$commmsgglb", fil[i++]);
+		heade = heade.replace("$commmsgauth", fil[i++]);
 		heade = heade.replace("$tocvalue",fil[i++]);
-		heade = heade.replace("$tocauth",fil[i++]);
+		heade = heade.replace("$tocauth",fil[i++]);  
+		heade = heade.replace("$filepervalue",fil[i++]);
+		heade = heade.replace("$fileperglb",fil[i++]);
+		heade = heade.replace("$filecommitvalue",fil[i++]);
+		heade = heade.replace("$filecommitglb",fil[i++]);
+		heade = heade.replace("$filecombivalue",fil[i++]);
+		heade = heade.replace("$filecombiglb",fil[i++]);	
+		heade = heade.replace("$authfpervalue",fil[i++]);
+		heade = heade.replace("$fileperauth",fil[i++]);
+		heade = heade.replace("$authfcommitvalue",fil[i++]);
+		heade = heade.replace("$filecommitauth",fil[i++]);
+		heade = heade.replace("$authfcombivalue",fil[i++]);
+		heade = heade.replace("$filecombiauth",fil[i++]);
 		heade = heade.replace("$decision",fil[i++]);
 		heade = heade.replace("$decvalue",fil[i++]);
-		heade = heade.replace("$comment",fil[i++]);
+		//heade = heade.replace("$comment",fil[i++]);
 		
 		sb.append(heade); 
 		
@@ -85,7 +100,7 @@ public class htmldata {
 	public static void main(String[] args) throws IOException {
 		Settings s = new Settings();
 		Settings.Repositorypath = "C://Users//Raman Workstation//Documents//GitHub//node.git";
-		Settings.Repositoryname = "Node";
+		Settings.Repositoryname = "Node10";
 		Settings.owner = "joyent";
 		Settings.repo = "node";
 		s.initiate();

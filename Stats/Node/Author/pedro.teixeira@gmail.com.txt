@@ -1,0 +1,21 @@
+Author Time Graph
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
+
+Author LOC Changed
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
+
+Author LOC Added
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
+
+Author LOC Removed
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
+
+Author Files Changed
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
+
+Author Files Added
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
+
+Author Files Removed
+[REAL* (NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN)]
+

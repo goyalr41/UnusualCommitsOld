@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,9 +44,7 @@ public class extractcommits {
 	        File gitDir = new File(Repositorypath);
 	        Repository repository = new FileRepository(gitDir);
 	        Git git = new Git(repository);
-	        
-	        Iterable<RevCommit> logs = new Git(repository).log().all().call();
-	        
+	        	        
 	        //ObjectId lastCommitId = repository.resolve(Constants.MASTER);
 	        ObjectId parentid = null;
 	        ObjectId currid = null;
@@ -92,22 +91,28 @@ public class extractcommits {
 	        Map<String, Map<String,Long>> author_files = new HashMap<>();
 	        
 	        int total = 0; 
-	        
-	        for (@SuppressWarnings("unused") RevCommit rev : logs) {
+	           
+	        Iterable<RevCommit> logs = new Git(repository).log().all().call();
+
+	        List<RevCommit> logs1 = new ArrayList<RevCommit>();
+	        for(RevCommit rev: logs){
+	        	logs1.add(rev);
 	        	total++;
 	        }
-	       
+	        
 	        total = total/2;
-	       
-	        Iterable<RevCommit> logs1 = new Git(repository).log().all().call();
+	        
+	        Collections.reverse(logs1);
+	        
 	        for (RevCommit rev : logs1) {
 	    		count++;
-	        	if(count <= total) {
+	        	if(count > total) {
 	        		//System.out.println(count);
-	        		continue;
+	        		//continue;
+	        		break;
 	        	}
 	        		
-	        	if(rev.getParentCount() == 1) { //Not tking Merge commits, for taking them make it >= .
+	        	if(rev.getParentCount() == 1) { //Not taking Merge commits, for taking them make it >= .
 	    	       
 	        		try {
 	    	        	
@@ -171,6 +176,8 @@ public class extractcommits {
 		    	                			//int p = tem.lastIndexOf("/");
 		    	                			if(h >= 0) {
 		    	                				filetype = tem.substring(h, tem.length());
+		    	                				filetype = filetype.replace(" ", "");
+
 		    	                				if(filtyp != 1) {
 		    		    	                		filetypes.add(filetype);
 		    		    	                		if(filecount.containsKey(filetype)){
@@ -199,6 +206,7 @@ public class extractcommits {
 		    	                			//int p = tem.lastIndexOf("/");
 		    	                			if(h >= 0) {
 		    	                				filetype = tem.substring(h, tem.length());
+		    	                				filetype = filetype.replace(" ", "");
 		    	                				if(filtyp != 1) {
 		    		    	                		filetypes.add(filetype);
 		    		    	                		if(filecount.containsKey(filetype)){
@@ -274,7 +282,9 @@ public class extractcommits {
 		    	    
 		    	    //System.out.println(rev.getFullMessage() + "\n");
 		    	    
-		    	    wd.write(rev.getName().substring(0,11), email, totallinechanged, ovllineadd, ovllinerem, filetypes.size(), totalfiladd, totalfilrem, Integer.parseInt(formatter.format(p.getWhen())), filetypes);
+		    	    String[] commsgwords = rev.getFullMessage().split(" ");
+		    	    		    	    
+		    	    wd.write(rev.getName().substring(0,11), email, totallinechanged, ovllineadd, ovllinerem, filetypes.size(), totalfiladd, totalfilrem, Integer.parseInt(formatter.format(p.getWhen())), filetypes, commsgwords.length);
 	        		
 	        		/*String h = "";
 	        		for(String filtyp: filetypes){
