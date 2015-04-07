@@ -14,6 +14,7 @@ import java.util.TreeMap;
 import org.apache.commons.io.FileUtils;
 
 import settings.Settings;
+import stats.Curvefitting;
 
 public class filetypetest {
 	//chance of file changed = percentage of file
@@ -31,9 +32,11 @@ public class filetypetest {
 	public static String filepercent, authfilepercent;
 	public static String filepercommit, authfilepercommit;
 	public static String filecombfre, authfilecombfre;
+	public static Double fileunusualcomb, authfileunusualcomb;
 	public static String minpercentfiltyp, authminpercentfiltyp;
 	public static String minpercommitfiltyp, authminpercommitfiltyp;
 	public static String mincombfrefiltyp, authmincombfrefiltyp;
+	public static String unusualcombprobfiltyp, authunusualcombprobfiltyp;
 
 	public static double round2(double d) {
 	     return Math.round(d * 10000) / 10000.0;
@@ -137,7 +140,7 @@ public class filetypetest {
     		String[] temp = filecount.split("\t");
     		SortedMap<String,String> tempmap = new TreeMap<String,String>();
     		List<String> templist = new ArrayList<>();
-    		for(int i = 1; i < temp.length; i++) {
+    		for(int i = 1; i < temp.length; i++) { //0 being the commit id
     				String[] temp1 = temp[i].split(",");
     				tempmap.put(temp1[0],(temp1[1]));
     				templist.add(temp1[0]);
@@ -261,7 +264,7 @@ public class filetypetest {
     	}
 	}
 	
-	public Map<String,Double> topfilecombinations() throws IOException{
+	/*public Map<String,Double> topfilecombinations() throws IOException{
 		File file_global = new File(Settings.Datapath + Settings.Repositoryname +"//Global//Training_filescount.tsv");
 		List<String> lis = FileUtils.readLines(file_global);
 		topcombinations = new HashMap<String,Double>();
@@ -330,7 +333,7 @@ public class filetypetest {
 	    	}
 	    	
 			return topcombinationssubset;	
-	}
+	}*/
 	
 	public void calculateglb(List<String> filetypes) throws IOException{
 		
@@ -340,11 +343,13 @@ public class filetypetest {
 		minpercentfiltyp = "NA";
 		minpercommitfiltyp = "NA";
 		mincombfrefiltyp = "NA";
+		unusualcombprobfiltyp = "NA";
 		
 		filetypetest fs= new filetypetest();
-		fs.filecombinations();
+		fs.filecombinations(); //Two combinations
 		Map<String,Double> percommitmap = fs.filecommitchanged();
 		Map<String,Double> percentmap = fs.fileperchanged();
+		Curvefitting.combinationgraphglobal();	
 		
     	Map<String,Long> filecounts = new HashMap<>();
     	//This is for current commit only
@@ -389,6 +394,7 @@ public class filetypetest {
     	}
     	
     	double combfre = 1.0;
+    	double unusualcombprob = 1.0;
     	
     	for(int s = 0; s + 1 < combinations.size(); s++) {
 	    	for(int u = s + 1; u < combinations.size(); u++) {
@@ -403,6 +409,24 @@ public class filetypetest {
 	    			combfre = 0.0;	 
 	    			mincombfrefiltyp = combkey;
 	    		}
+	    		
+	    		//System.out.println(Curvefitting.meanmap);
+	    		//System.out.println(Curvefitting.sdtmap);
+	    		
+	    		if(Curvefitting.meanmap.containsKey(combkey) && Curvefitting.sdtmap.containsKey(combkey)) {
+	    			double prob;
+	    			double chck = Math.log10(filecounts.get(s)/filecounts.get(u));
+	    			if(chck-Curvefitting.meanmap.get(combkey) != 0) {
+	    				prob = (Math.pow(Curvefitting.sdtmap.get(combkey),2.0))/(Math.pow((chck-Curvefitting.meanmap.get(combkey)), 2.0));
+	    			}else {
+	    				prob = 1.0;
+	    			}
+	    			
+	    			if(unusualcombprob >= prob) {
+	    				unusualcombprob = prob;
+	    				unusualcombprobfiltyp = combkey;
+	    			}
+	    		}
 	    	}
 		}
     	
@@ -410,6 +434,7 @@ public class filetypetest {
     	minpercent = round2(minpercent);
     	minpercommit = round2(minpercommit);
     	combfre = round2(combfre);
+    	unusualcombprob = round2(unusualcombprob);
     	
     	
 		if(minpercent < 0.02){
@@ -429,6 +454,8 @@ public class filetypetest {
 		}else {
 			filecombfre = combfre + " , " + 0;
 		}
+		
+		fileunusualcomb = unusualcombprob;
 		//return (Double) null;
 	}
 	
@@ -440,10 +467,12 @@ public class filetypetest {
 		authminpercentfiltyp = "NA";
 		authminpercommitfiltyp = "NA";
 		authmincombfrefiltyp = "NA";
+		authunusualcombprobfiltyp = "NA";
 		
 		authfilecombinations(email);
 		Map<String,Double> percommitmap = authfilecommitchanged(email);
 		Map<String,Double> percentmap = authfileperchanged(email);
+		Curvefitting.combinationgraphauthor(email);	
 		
     	Map<String,Long> filecounts = new HashMap<>();
     	//This is for current commit only
@@ -488,6 +517,7 @@ public class filetypetest {
     	}
     	
     	double combfre = 1.0;
+    	double unusualcombprob = 1.0;
     	
     	for(int s = 0; s + 1 < combinations.size(); s++) {
 	    	for(int u = s + 1; u < combinations.size(); u++) {
@@ -502,6 +532,24 @@ public class filetypetest {
 	    			combfre = 0.0;	 
 	    			authmincombfrefiltyp = combkey;
 	    		}
+	    		
+	    		//System.out.println(Curvefitting.authormeanmap);
+	    		//System.out.println(Curvefitting.authorsdtmap);
+	    		
+	    		if(Curvefitting.authormeanmap.containsKey(combkey) && Curvefitting.authorsdtmap.containsKey(combkey)) {
+	    			double prob;
+	    			double chck = Math.log1p(filecounts.get(s)/filecounts.get(u));
+	    			if(chck-Curvefitting.authormeanmap.get(combkey) != 0) {
+	    				prob = (Math.pow(Curvefitting.authorsdtmap.get(combkey),2.0))/(Math.pow((chck-Curvefitting.authormeanmap.get(combkey)), 2.0)); //Chebyshev's Inequality
+	    			}else {
+	    				prob = 1.0;
+	    			}
+	    			
+	    			if(unusualcombprob >= prob) {
+	    				unusualcombprob = prob;
+	    				authunusualcombprobfiltyp = combkey;
+	    			}
+	    		}
 	    	}
 		}
     	
@@ -509,7 +557,7 @@ public class filetypetest {
     	minpercent = round2(minpercent);
     	minpercommit = round2(minpercommit);
     	combfre = round2(combfre);
-    	
+    	unusualcombprob = round2(unusualcombprob);
     	
 		if(minpercent < 0.02){
 			authfilepercent = minpercent  + " , " + 0.995;
@@ -528,6 +576,8 @@ public class filetypetest {
 		}else {
 			authfilecombfre = combfre + " , " + 0;
 		}
+		
+		authfileunusualcomb = unusualcombprob;
 		//return (Double) null;
 	}
 	

@@ -144,6 +144,8 @@ public class curvefittingtest {
 	        writer.append("File per commit\t");
 	        writer.append("File Comb Type\t");
 	        writer.append("Combination frequency\t");
+	        writer.append("Unusual Comb Ratio Type\t");
+	        writer.append("Unusual Comb Ratio\t");
 	        
 	        writer.append("Author File Percent Type\t");
 	        writer.append("Author File percent changed\t");
@@ -151,6 +153,8 @@ public class curvefittingtest {
 	        writer.append("Author File per commit\t");
 	        writer.append("Author File Comb Type\t");
 	        writer.append("Author Combination frequency\t");
+	        writer.append("Author Comb Ratio Type\t");
+	        writer.append("Author Comb Ratio\t");
 	       /* writer.append("TOF Changed\t");
 	        writer.append("Global TOF Changed Quartile?\t");
 	        writer.append("Author TOF Changed Quartile\t");*/
@@ -159,8 +163,8 @@ public class curvefittingtest {
 	       // writer.append("Comment\t");
 	        writer.append("\n");
 	        	        
-	        naivemethod nm = new naivemethod();
-	        nm.buildglobal();
+	        //naivemethod nm = new naivemethod();
+	        //nm.buildglobal();
 	        
 	        //To count total number of Commits.
 	        int count = 0; 
@@ -359,17 +363,18 @@ public class curvefittingtest {
 	    	        List<Double> val = new ArrayList<Double>();
 	    	        
 	    	        //System.out.println("Com");
+	    	         
+	    	        filetypetest ftt = new filetypetest();
+	    	        ftt.calculateglb(filetypes);
+	    	        if(exists) {
+	    	        	ftt.calculateauth(filetypes, email);
+	    	        }
 	    	        
 	    	        cf.calcglobal();
 	    	        if(exists) {
 	    	        	cf.calculateauthor(email);
 	    	        }
 	    	        
-	    	        filetypetest ftt = new filetypetest();
-	    	        ftt.calculateglb(filetypes);
-	    	        if(exists) {
-	    	        	ftt.calculateauth(filetypes, email);
-	    	        }
 	    	        
 	        		writer.append( totallinechanged + "\t" ); 
 	    	        writeit(val, totallinechanged, Curvefitting.totallocalpha, Curvefitting.totallocbeta, writer);
@@ -424,10 +429,20 @@ public class curvefittingtest {
 	    	        	writer.append(round2(mapping(0.5))+"\t");
 	        		}
 	    	        
-	    	        writer.append( rev.getFullMessage().length() + "\t" );
+	    	        /*writer.append( rev.getFullMessage().length() + "\t" );
 	    	        writeit(val,rev.getFullMessage().length()+1, Curvefitting.commsgalpha, Curvefitting.commsgbeta, writer);
 	    	        if(exists) {
 	    	        	writeitauthor(val, rev.getFullMessage().length()+1, Curvefitting.commsgauthalpha, Curvefitting.commsgauthbeta, writer);
+	    	        }else {
+	    	        	val.add(mapping(0.5));
+	    	        	writer.append(round2(mapping(0.5))+"\t");
+	        		}*/
+	    	        
+	    	        
+	    	        writer.append( commsgwords.length + "\t" );
+	    	        writeit(val,commsgwords.length+1, Curvefitting.commsgalpha, Curvefitting.commsgbeta, writer);
+	    	        if(exists) {
+	    	        	writeitauthor(val, commsgwords.length+1, Curvefitting.commsgauthalpha, Curvefitting.commsgauthbeta, writer);
 	    	        }else {
 	    	        	val.add(mapping(0.5));
 	    	        	writer.append(round2(mapping(0.5))+"\t");
@@ -555,11 +570,22 @@ public class curvefittingtest {
 	        			writer.append("NA\t");
 	        		}
 	    	        
+	    	        writer.append(ftt.unusualcombprobfiltyp + "\t");
+
+	    	        if(!ftt.filecombfre.equals("NA")) {
+		    	        writer.append(ftt.fileunusualcomb + " , "); //Probability according to chebyshev.
+		    	        writer.append(round2(mapping(1.0-ftt.fileunusualcomb))+"\t");
+		    	        val.add(mapping(1.0-ftt.fileunusualcomb));
+	        		}else {
+	        			writer.append("NA\t");
+	        		}
+	    	        
+	    	        
 	    	        if(exists) {
 	    	        	writer.append(ftt.authminpercentfiltyp+"\t");
 		    	        if(!ftt.authfilepercent.equals("NA")) {
-			    	        //writer.append(ftt.filepercent+"\t");
-			    	        num = ftt.authfilepercent.split(",");
+
+		    	        	num = ftt.authfilepercent.split(",");
 			    	        writer.append(num[0] + " , ");
 			    	        writer.append(round2(mapping(Double.parseDouble(num[1].trim())))+"\t");
 			    	        val.add(mapping(Double.parseDouble(num[1].trim())));
@@ -589,7 +615,7 @@ public class curvefittingtest {
 	    	        
 	    	        if(exists) {
 	    	        	writer.append(ftt.authmincombfrefiltyp+"\t");
-			    	        //writer.append(ftt.filecombfre+"\t");
+			    	 
 		    	        if(!ftt.authfilecombfre.equals("NA")) {
 			    	        num = ftt.authfilecombfre.split(",");
 			    	        writer.append(num[0] + " , ");
@@ -598,6 +624,21 @@ public class curvefittingtest {
 		    	        }else {
 		        			writer.append("NA\t");
 		    	        }
+	    	        }else {
+	    	        	val.add(mapping(0.5));
+	    	        	writer.append(" NA \t" + round2(mapping(0.5))+"\t");
+	    	        }
+	    	        
+	    	        if(exists) {
+	    	        	 writer.append(ftt.authunusualcombprobfiltyp + "\t");
+
+	    	        	 if(!ftt.authfilecombfre.equals("NA")) {
+	  		    	        writer.append(ftt.authfileunusualcomb + " , "); //Probability according to chebyshev.
+	  		    	        writer.append(round2(mapping(1.0-ftt.authfileunusualcomb))+"\t");
+	  		    	        val.add(mapping(1.0-ftt.authfileunusualcomb));
+	  	        		}else {
+	  	        			writer.append("NA\t");
+	  	        		}
 	    	        }else {
 	    	        	val.add(mapping(0.5));
 	    	        	writer.append(" NA \t" + round2(mapping(0.5))+"\t");

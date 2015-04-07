@@ -1,5 +1,9 @@
 package stats;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.rosuda.JRI.Rengine;
 import org.rosuda.JRI.REXP;
 
@@ -15,6 +19,10 @@ public class Curvefitting {
 	public static double nofrembeta, nofremalpha, nofremauthbeta, nofremauthalpha;
 	public static double commsgalpha, commsgbeta, commsgauthbeta, commsgauthalpha;
 	public static double timebeta, timealpha;
+	public static Map<String,Double> meanmap = new HashMap<String,Double>();
+	public static Map<String,Double> sdtmap = new HashMap<String,Double>();
+	public static Map<String,Double> authormeanmap = new HashMap<String,Double>();
+	public static Map<String,Double> authorsdtmap = new HashMap<String,Double>();
 	public static Rengine re;
 	
 	public void init() {
@@ -158,6 +166,8 @@ public class Curvefitting {
 			commsgbeta = Double.parseDouble(b.toString().substring(8, b.toString().length()-2));
 		    commsgalpha = Double.parseDouble(a.toString().substring(8, a.toString().length()-2));
 		    
+		    combinationgraphglobal();
+		    
 			
 		} catch (Exception e) {
 			System.out.println("EX:"+e);
@@ -166,6 +176,95 @@ public class Curvefitting {
 		
 		 re.end();
 		 
+    }
+    
+    public static void combinationgraphglobal() {
+    	
+    	String Datapath = Settings.Datapath;
+		//String DatapathforR = Datapath.replace("//", "/");
+		//String Statspath = Settings.Statspath;
+		String Repositoryname = Settings.Repositoryname;
+		
+		meanmap.clear();
+		sdtmap.clear();
+		
+        File combdir =  new File( Datapath + Repositoryname + "//Global//FileCombinations");
+	    File[] files = combdir.listFiles();
+	    for(File f: files){
+	    	String path = f.getAbsolutePath();
+	    	//System.out.println(path);
+	    	int p = path.lastIndexOf("\\");
+            String fil_name = path.substring(p+1, path.length());
+	    	int h = fil_name.lastIndexOf(".");
+            String fil_name_key = fil_name.substring(0,h);
+            fil_name = "`" + fil_name + "`"; 
+            path = path.replace("\\", "/");
+            //System.out.println(path);
+            String authread = fil_name +" <- read.delim(\""+path+"\", header=FALSE)";
+	    	re.eval(authread);
+	    	//System.out.println(authread);
+			
+			String mea = "s <- mean(log10("+fil_name+"$V1/"+fil_name+"$V2))";
+			String sd = "d <- sd(log10("+fil_name+"$V1/"+fil_name+"$V2))";
+			//String val = "abline(v=c("+mean+" - 3*" + sdt+ " , " + mean + ", "+ mean + " + 3*" + sdt + "), col=\"red\")"; 
+			REXP a = re.eval(mea);
+			REXP b = re.eval(sd);
+			
+			Double mean = Double.parseDouble(a.toString().substring(8, a.toString().length()-2));
+			Double std = Double.parseDouble(b.toString().substring(8, b.toString().length()-2));
+			
+			meanmap.put(fil_name_key,mean);
+			sdtmap.put(fil_name_key,std);
+				
+	    }
+	    
+	    re.end();
+    }
+    
+    public static void combinationgraphauthor(String email) {
+    	
+    	String Datapath = Settings.Datapath;
+		//String DatapathforR = Datapath.replace("//", "/");
+		//String Statspath = Settings.Statspath;
+		String Repositoryname = Settings.Repositoryname;
+		
+		authormeanmap.clear();
+		authorsdtmap.clear();
+		
+        File combdir =  new File( Datapath + Repositoryname + "//Author//FileCombinations//"+email);
+	    File[] files = combdir.listFiles();
+	    if(files == null) {
+	    	return;
+	    }
+	    for(File f: files){
+	    	String path = f.getAbsolutePath();
+	    	//System.out.println(path);
+	    	int p = path.lastIndexOf("\\");
+            String fil_name = path.substring(p+1, path.length());
+            int h = fil_name.lastIndexOf(".");
+            String fil_name_key = fil_name.substring(0,h);
+            fil_name = "`" + fil_name + "`"; 
+            path = path.replace("\\", "/");
+            //System.out.println(path);
+            String authread = fil_name +" <- read.delim(\""+path+"\", header=FALSE)";
+	    	re.eval(authread);
+	    	//System.out.println(authread);
+			
+			String mea = "s <- mean(log10("+fil_name+"$V1/"+fil_name+"$V2))";
+			String sd = "d <- sd(log10("+fil_name+"$V1/"+fil_name+"$V2))";
+			//String val = "abline(v=c("+mean+" - 3*" + sdt+ " , " + mean + ", "+ mean + " + 3*" + sdt + "), col=\"red\")"; 
+			REXP a = re.eval(mea);
+			REXP b = re.eval(sd);
+			
+			Double mean = Double.parseDouble(a.toString().substring(8, a.toString().length()-2));
+			Double std = Double.parseDouble(b.toString().substring(8, b.toString().length()-2));
+			
+			authormeanmap.put(fil_name_key,mean);
+			authorsdtmap.put(fil_name_key,std);
+				
+	    }
+	    
+	    re.end();
     }
     
     public static void calculateauthor(String email){
