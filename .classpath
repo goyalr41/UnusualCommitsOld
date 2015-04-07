@@ -9,75 +9,11 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="libraries/renjin-studio-0.7.0-RC7-jar-with-dependencies.jar"/>
 	<classpathentry kind="lib" path="libraries/renjin-script-engine-0.7.0-RC8-SNAPSHOT-jar-with-dependencies.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.egit.github.core"/>
 	<classpathentry kind="lib" path="libraries/commons-io-2.4-javadoc.jar"/>
 	<classpathentry kind="lib" path="libraries/commons-io-2.4-sources.jar"/>
 	<classpathentry kind="lib" path="libraries/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="libraries/org.eclipse.jgit-3.6.1.201501031845-r-javadoc.jar"/>
 	<classpathentry kind="lib" path="libraries/org.eclipse.jgit-3.6.1.201501031845-r.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/asm-5.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/asm-commons-5.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/fcgi-client-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/fcgi-server-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/javax.annotation-api-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/javax.el-3.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/javax.mail.glassfish-1.4.1.v201005082020.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/javax.security.auth.message-1.0.0.v201108011116.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/javax.servlet.jsp.jstl-1.2.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/javax.servlet.jsp-2.3.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/javax.servlet.jsp-api-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/javax.transaction-api-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/javax.websocket-api-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/javax-websocket-client-impl-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/javax-websocket-server-impl-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-alpn-client-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-alpn-server-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-annotations-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-cdi-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-client-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-continuation-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-deploy-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-http-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-io-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-jaas-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-jaspi-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-jmx-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-jndi-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-jsp-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-jsp-jdt-2.3.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-monitor-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-plus-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-proxy-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-quickstart-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-rewrite-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-schemas-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-security-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-server-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-servlet-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-servlets-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-setuid-java-1.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-spring-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-util-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-webapp-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/jetty-xml-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/org.apache.taglibs.taglibs-standard-impl-1.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/org.apache.taglibs.taglibs-standard-spec-1.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/org.eclipse.jdt.core-3.8.2.v20130121.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/org.eclipse.jetty.apache-jsp-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/org.eclipse.jetty.orbit.javax.servlet.jsp.jstl-1.2.0.v201105211821.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/org.eclipse.jetty.orbit.org.eclipse.jdt.core-3.8.2.v20130121.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/org.mortbay.jasper.apache-el-8.0.9.M3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/org.mortbay.jasper.apache-jsp-8.0.9.M3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/servlet-api-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/spdy-client-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/spdy-core-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/spdy-http-common-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/spdy-http-server-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/spdy-server-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/websocket-api-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/websocket-client-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/websocket-common-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/websocket-server-9.2.10.v20150310.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raman Workstation/git/UnusualCommits/libraries/jetty-lib/websocket-servlet-9.2.10.v20150310.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.egit.github.core"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
