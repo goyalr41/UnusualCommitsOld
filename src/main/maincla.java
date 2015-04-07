@@ -21,7 +21,7 @@ public class maincla {
 		
 		Settings s = new Settings();
 		Settings.Repositorypath = "C://Users//Raman Workstation//Documents//GitHub//node.git";
-		Settings.Repositoryname = "Node21";
+		Settings.Repositoryname = "Node25";
 		Settings.owner = "joyent";
 		Settings.repo = "node";
 		s.initiate();

@@ -15,5 +15,8 @@
 	<classpathentry kind="lib" path="libraries/org.eclipse.jgit-3.6.1.201501031845-r-javadoc.jar"/>
 	<classpathentry kind="lib" path="libraries/org.eclipse.jgit-3.6.1.201501031845-r.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.egit.github.core"/>
+	<classpathentry kind="lib" path="libraries/JRI.jar"/>
+	<classpathentry kind="lib" path="libraries/JRIEngine.jar"/>
+	<classpathentry kind="lib" path="libraries/REngine.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
